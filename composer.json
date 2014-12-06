@@ -1,0 +1,8 @@
+{
+    "autoload": {
+        "psr-4": {"NYTimes\\" : "src/"}
+    },
+    "require" : {
+        "eloquent/enumeration": "dev-master"
+    }
+}
