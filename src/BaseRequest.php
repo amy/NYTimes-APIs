@@ -44,8 +44,12 @@ abstract class BaseRequest
      * @return mixed
      *    Query response
      */
-    public function query()
+    public function query($newQuery = null)
     {
+        if ($newQuery !== null) {
+            $this->query = $newQuery;
+        }
+
         $string = "{$this->URI}{$this->responseFormat}?q={$this->query}&api-key={$this->key}";
         echo "\n YOUR QUERY \n" . $string . "\n END QUERY \n";
 
@@ -69,4 +73,6 @@ abstract class BaseRequest
 
         return $response;
     }
+
+
 } 
