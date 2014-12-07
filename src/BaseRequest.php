@@ -1,13 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: amy
- * Date: 12/6/14
- * Time: 1:55 AM
- */
 
 namespace NYTimes;
 
+/**
+ * Class BaseRequest
+ *
+ * Abstract class for all NYTimes APIs.
+ *
+ * @package NYTimes
+ * @author Amy Chen <ac1084@scarletmail.rutgers.edu>
+ */
 abstract class BaseRequest
 {
     protected $URI;
@@ -15,6 +17,14 @@ abstract class BaseRequest
     protected $responseFormat;
     protected $key;
 
+    /**
+     * BaseRequest constructor
+     *
+     * @param $URI
+     * @param $query
+     * @param $responseFormat
+     * @param $key
+     */
     public function __construct(
         $URI,
         $query,
@@ -27,9 +37,17 @@ abstract class BaseRequest
         $this->key = $key;
     }
 
+    /**
+     * Returns the query in the response format requested.
+     * (Ex: json, xml)
+     *
+     * @return mixed
+     *    Query response
+     */
     public function query()
     {
-        $string = "{$this->URI}{$this->query}{$this->key}";
+        $string = "{$this->URI}{$this->responseFormat}?q={$this->query}&api-key={$this->key}";
+        echo "\n YOUR QUERY \n" . $string . "\n END QUERY \n";
 
         // Get cURL resource
         $curl = curl_init();
@@ -39,7 +57,7 @@ abstract class BaseRequest
             $curl,
             array(
                 CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_URL => $this->URI
+                CURLOPT_URL => $string
             )
         );
 

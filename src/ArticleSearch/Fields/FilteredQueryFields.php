@@ -6,7 +6,7 @@
  * Time: 2:32 AM
  */
 
-namespace NYTimes\ArticleSearch;
+namespace NYTimes\ArticleSearch\Fields;
 
 use Eloquent\Enumeration\AbstractEnumeration;
 

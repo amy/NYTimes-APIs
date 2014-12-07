@@ -1,6 +1,8 @@
 {
+    "name": "amy/nytimes-apis",
+    "description": "NYTimes API PHP Wrapper",
     "autoload": {
-        "psr-4": {"NYTimes\\" : "src/"}
+        "classmap": ["./src"]
     },
     "require" : {
         "eloquent/enumeration": "dev-master"
