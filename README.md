@@ -1,9 +1,9 @@
 NYTimes-APIs
 ============
 
-PHP wrapper for NYTimes APIs.
+##PHP wrapper for NYTimes APIs.
 
-Are you a PHP dev? Try out these php bindings for the NYTimes API.
+####Are you a PHP dev? Try out these php bindings for the NYTimes API.
 
 Use the Composer dependency manager to easily include these bindings into your project. In the composer.json file in your root directory add the following require entry:
 
