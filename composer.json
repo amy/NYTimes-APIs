@@ -1,6 +1,12 @@
 {
     "name": "amy/nytimes-apis",
     "description": "NYTimes API PHP Wrapper",
+    "authors": [
+        {
+            "name": "Amy Chen",
+            "email": "ac1084@scarletmail.rutgers.edu"
+        }
+    ],
     "autoload": {
         "classmap": ["./src"]
     },
