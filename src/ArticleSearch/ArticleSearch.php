@@ -53,9 +53,6 @@ class ArticleSearch extends BaseRequest
             );
         }
 
-        /**
-         * @TODO abstract the response format error checking. Repeated across other APIs
-         */
         if ($responseFormat !== '.json' &&
             $responseFormat !== '.jsonp'
         ) {
@@ -103,6 +100,7 @@ class ArticleSearch extends BaseRequest
     {
         /**
          * @TODO need a better way of validating filtered queries
+         * @TODO also need to scan for spaces. Spaces will break query
          */
 
         /*if (!($filteredQuery instanceof FilteredQueryFields)) {
@@ -348,7 +346,7 @@ class ArticleSearch extends BaseRequest
     }
 
     /**
-     * Enables highlighting in search results.
+     * Enables/disables highlighting in search results.
      *
      * The query term (q) is highlighted in the headline and
      * lead_paragraph fields.
@@ -356,13 +354,30 @@ class ArticleSearch extends BaseRequest
      * Note: If highlighting is enabled, snippet will be returned
      * even if it is not specified in limitFields $fields array.
      *
+     * @param boolean $boolean
+     *    True enables highlighting. False disables highlighting.
      * @return $this
      */
-    public function enableHighlighting()
+    public function highlight($boolean)
     {
+        /* --- Exception Handling --- */
+        $booleanFinal = filter_var(
+            $boolean,
+            FILTER_VALIDATE_BOOLEAN,
+            FILTER_NULL_ON_FAILURE
+        );
+
+        if ($booleanFinal === null) {
+            throw new \InvalidArgumentException(
+                "Parameter entered for ArticleSearch highlight method was not a boolean value. \n
+                Valid entries include true or false. \n
+                $boolean entered."
+            );
+        }
+
         /* --- Query Building --- */
 
-        $this->query .= '&hl=true';
+        $this->query .= "&hl=$booleanFinal";
 
         return $this;
     }
