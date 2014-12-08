@@ -4,12 +4,19 @@ require('./vendor/autoload.php');
 use NYTimes\ArticleSearch\ArticleSearchQuery;
 use NYTimes\ArticleSearch\ArticleSearchRequest;
 use NYTimes\ArticleSearch\Constants\ArticleSearchResponseFormat;
+use NYTimes\ArticleSearch\Constants\SortField;
 
 $query = new ArticleSearchQuery('test');
+
+$query
+    ->page(1)
+    ->sort(SortField::NEWEST());
+
 $request = new ArticleSearchRequest(
     $query,
     ArticleSearchResponseFormat::JSON(),
-    '215e4381f56e8143a7ebfcf71cc47f96:17:70278005'
+    'your key'
 );
 
-var_dump($request->query());
+$json = $request->query();
+var_dump($json);

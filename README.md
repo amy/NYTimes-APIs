@@ -27,15 +27,19 @@ composer install
 Creating request response objects are now super easy for PHP devs! Here's an example use for the Article Search API:
 
 ```
-$search = new ArticleSearch(
-    "The key you received upon registering app",
-    "YourQuery"
+$query = new ArticleSearchQuery('test');
+
+$query
+    ->page(1)
+    ->sort(SortField::NEWEST());
+
+$request = new ArticleSearchRequest(
+    $query,
+    ArticleSearchResponseFormat::JSON(),
+    'your key'
 );
 
-$json = $search
-           ->filteredQuery('source:("The%20New%20York%20Times")')
-           ->beginDate(2013, 12, 20)
-           ->query();
+$json = $request->query();
 ```
 
 ### Authors and Contributors

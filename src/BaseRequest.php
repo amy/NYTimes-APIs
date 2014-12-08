@@ -3,8 +3,6 @@
 namespace NYTimes;
 
 use Httpful\Request;
-use HttpRequest;
-use HttpException;
 
 /**
  * Class BaseRequest
@@ -60,13 +58,14 @@ abstract class BaseRequest extends \ArrayObject
      */
     public function query()
     {
-        //echo "\n YOUR QUERY \n" . $this->__toString() . "\n END QUERY \n";
+        echo "\n YOUR QUERY \n" . $this->__toString() . "\n END QUERY \n";
 
         $request = Request::get($this->__toString())
             ->send();
 
         $response = $request->raw_body;
 
+        var_dump($request);
         return $response;
     }
 

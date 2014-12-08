@@ -10,7 +10,7 @@ namespace NYTimes\ArticleSearch\Constants;
 
 use Eloquent\Enumeration\AbstractEnumeration;
 
-class ArticleSearchFields extends AbstractEnumeration
+abstract class ArticleSearchFields extends AbstractEnumeration
 {
 
 } 
