@@ -60,34 +60,15 @@ abstract class BaseRequest extends \ArrayObject
      */
     public function query()
     {
-        echo "\n YOUR QUERY \n" . $this->__toString() . "\n END QUERY \n";
+        //echo "\n YOUR QUERY \n" . $this->__toString() . "\n END QUERY \n";
 
         $request = Request::get($this->__toString())
             ->send();
 
-        $response = $request->body->result;
+        $response = $request->raw_body;
 
         return $response;
     }
 
 
 }
-/**
-// Get cURL resource
-$curl = curl_init();
-
-// Set some options - we are passing in a useragent too here
-curl_setopt_array(
-    $curl,
-    array(
-        CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_URL => $this->__toString()
-    )
-);
-
-// Send the request & save response to $resp
-$response = curl_exec($curl);
-
-// Close request to clear up some resources
-curl_close($curl);
- */
