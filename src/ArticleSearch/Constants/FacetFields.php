@@ -6,11 +6,9 @@
  * Time: 2:36 AM
  */
 
-namespace NYTimes\ArticleSearch\Fields;
+namespace NYTimes\ArticleSearch\Constants;
 
-use Eloquent\Enumeration\AbstractEnumeration;
-
-class FacetFields extends AbstractEnumeration
+class FacetFields extends ArticleSearchFields
 {
     const SECTION_NAME = 'section_name';
     const DOCUMENT_TYPE = 'document_type';

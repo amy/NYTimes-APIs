@@ -10,12 +10,9 @@ namespace NYTimes;
  * @package NYTimes
  * @author Amy Chen <ac1084@scarletmail.rutgers.edu>
  */
-abstract class BaseRequest
+abstract class BaseRequest extends \ArrayObject
 {
-    protected $URI;
-    protected $query;
-    protected $responseFormat;
-    protected $key;
+    protected $request;
 
     /**
      * BaseRequest constructor
@@ -27,14 +24,27 @@ abstract class BaseRequest
      */
     public function __construct(
         $URI,
-        $query,
-        $responseFormat,
+        BaseQuery $query,
+        BaseResponseFormat $responseFormat,
         $key
     ) {
-        $this->URI = $URI;
-        $this->query = $query;
-        $this->responseFormat = $responseFormat;
-        $this->key = $key;
+        $request = array(
+            'URI' => $URI,
+            'query' => $query,
+            'response format' => $responseFormat,
+            'key' => $key,
+        );
+
+        parent::__construct($request);
+    }
+
+    public function __toString()
+    {
+        return
+            $this['URI'] . '.' .
+            $this['response format'] . '?' .
+            $this->request['query']->__toString() .
+            '&api-key=' . $this->key;
     }
 
     /**
@@ -44,14 +54,9 @@ abstract class BaseRequest
      * @return mixed
      *    Query response
      */
-    public function query($newQuery = null)
+    public function query()
     {
-        if ($newQuery !== null) {
-            $this->query = $newQuery;
-        }
-
-        $string = "{$this->URI}{$this->responseFormat}?q={$this->query}&api-key={$this->key}";
-        echo "\n YOUR QUERY \n" . $string . "\n END QUERY \n";
+        //echo "\n YOUR QUERY \n" . $string . "\n END QUERY \n";
 
         // Get cURL resource
         $curl = curl_init();
@@ -61,7 +66,7 @@ abstract class BaseRequest
             $curl,
             array(
                 CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_URL => $string
+                CURLOPT_URL => $this->__toString()
             )
         );
 

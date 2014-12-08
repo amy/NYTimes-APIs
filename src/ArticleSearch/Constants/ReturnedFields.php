@@ -6,11 +6,9 @@
  * Time: 3:56 PM
  */
 
-namespace NYTimes\ArticleSearch\Fields;
+namespace NYTimes\ArticleSearch\Constants;
 
-use Eloquent\Enumeration\AbstractEnumeration;
-
-class ReturnedFields extends AbstractEnumeration
+class ReturnedFields extends ArticleSearchFields
 {
     const _WEB_URL = 'web_url';
     const _SNIPPET = 'snippet';
