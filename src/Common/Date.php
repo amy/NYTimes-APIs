@@ -12,9 +12,10 @@ class Date extends \ArrayObject
         $day
     ) {
         /* --- Validation --- */
-        $this->validator->year($year);
-        $this->validator->month($month);
-        $this->validator->day($day);
+        $validator = new DateValidator();
+        $validator->year($year);
+        $validator->month($month);
+        $validator->day($day);
 
         if ($month < 10) {
             $month = '0' . $month;
