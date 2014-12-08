@@ -64,7 +64,9 @@ class ArticleSearchQuery extends BaseQuery
 
         foreach($this as $description => $value)
         {
-            $queryString .= "&{$description}={$value}";
+            if ($value !== null) {
+                $queryString .= "&{$description}={$value}";
+            }
         }
 
         return $queryString;

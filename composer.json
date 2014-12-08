@@ -11,6 +11,7 @@
         "classmap": ["./src"]
     },
     "require" : {
-        "eloquent/enumeration": "dev-master"
+        "eloquent/enumeration": "dev-master",
+        "nategood/httpful": "*"
     }
 }

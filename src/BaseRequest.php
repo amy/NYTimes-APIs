@@ -2,6 +2,10 @@
 
 namespace NYTimes;
 
+use Httpful\Request;
+use HttpRequest;
+use HttpException;
+
 /**
  * Class BaseRequest
  *
@@ -23,10 +27,10 @@ abstract class BaseRequest extends \ArrayObject
      * @param $key
      */
     public function __construct(
-        $URI,
         BaseQuery $query,
         BaseResponseFormat $responseFormat,
-        $key
+        $key,
+        $URI
     ) {
         $request = array(
             'URI' => $URI,
@@ -42,9 +46,9 @@ abstract class BaseRequest extends \ArrayObject
     {
         return
             $this['URI'] . '.' .
-            $this['response format'] . '?' .
-            $this->request['query']->__toString() .
-            '&api-key=' . $this->key;
+            $this['response format']->value() . '?' .
+            $this['query'] . '&api-key=' .
+            $this['key'];
     }
 
     /**
@@ -56,28 +60,34 @@ abstract class BaseRequest extends \ArrayObject
      */
     public function query()
     {
-        //echo "\n YOUR QUERY \n" . $string . "\n END QUERY \n";
+        echo "\n YOUR QUERY \n" . $this->__toString() . "\n END QUERY \n";
 
-        // Get cURL resource
-        $curl = curl_init();
+        $request = Request::get($this->__toString())
+            ->send();
 
-        // Set some options - we are passing in a useragent too here
-        curl_setopt_array(
-            $curl,
-            array(
-                CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_URL => $this->__toString()
-            )
-        );
-
-        // Send the request & save response to $resp
-        $response = curl_exec($curl);
-
-        // Close request to clear up some resources
-        curl_close($curl);
+        $response = $request->body->result;
 
         return $response;
     }
 
 
-} 
+}
+/**
+// Get cURL resource
+$curl = curl_init();
+
+// Set some options - we are passing in a useragent too here
+curl_setopt_array(
+    $curl,
+    array(
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_URL => $this->__toString()
+    )
+);
+
+// Send the request & save response to $resp
+$response = curl_exec($curl);
+
+// Close request to clear up some resources
+curl_close($curl);
+ */

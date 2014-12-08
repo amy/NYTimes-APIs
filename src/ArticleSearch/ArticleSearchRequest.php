@@ -14,17 +14,17 @@ use NYTimes\BaseRequest;
 class ArticleSearchRequest extends BaseRequest
 {
     public function __construct(
-        $URI = 'http://api.nytimes.com/svc/search/v2/articlesearch',
         ArticleSearchQuery $query,
         ArticleSearchResponseFormat $responseFormat,
-        $key
+        $key,
+        $URI = 'http://api.nytimes.com/svc/search/v2/articlesearch'
     ) {
 
         parent::__construct(
-            $URI,
             $query,
             $responseFormat,
-            $key
+            $key,
+            $URI
         );
     }
 } 
