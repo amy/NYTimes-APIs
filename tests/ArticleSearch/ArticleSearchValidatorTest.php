@@ -2,7 +2,7 @@
 
 namespace NYTimesTest\ArticleSearch;
 
-//require('./../vendor/autoload.php');
+//require('vendor/autoload.php');
 
 use NYTimes\ArticleSearch\ArticleSearchValidator;
 use NYTimesTest\NYTimesTest;

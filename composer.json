@@ -9,7 +9,11 @@
     ],
     "autoload": {
         "psr-4": {
-            "NYTimes\\": "./src/",
+            "NYTimes\\": "./src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "NYTimesTest\\": "./tests/"
         }
     },
