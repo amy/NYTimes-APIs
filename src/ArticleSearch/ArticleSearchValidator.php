@@ -39,7 +39,10 @@ class ArticleSearchValidator extends Validator
     {
         foreach ($fields as $field) {
             if (!($field instanceof ReturnedFields)) {
-                throw new \Exception();                         //@TODO MAKE EXCEPTION SPECIFIC!!!!!!!!!!!!!!!!!
+                throw new \InvalidArgumentException(
+                    "Array entered for ArticleSearch limitFields method was not composed entirely of ReturnedFields instances. \n
+                    The first invalid entry is: $field"
+                );                         //@TODO MAKE EXCEPTION SPECIFIC!!!!!!!!!!!!!!!!!
             }
         }
     }
@@ -57,21 +60,11 @@ class ArticleSearchValidator extends Validator
 
     public function page($setOfTen)
     {
-        $page = filter_var(
-            $setOfTen,
-            FILTER_VALIDATE_INT,
-            array(
-                'options' => array(
-                    'min_range' => 0
-                )
-            )
-        );
-
-        if ($page === false) {
+        if (!is_integer($setOfTen) || $setOfTen < 0) {
             throw new \InvalidArgumentException(
                 "Page entered for ArticleSearch page function was invalid. \n
                 Valid entries are integers greater than 0. \n
-                You entered: $page"
+                You entered: $setOfTen"
             );
         }
     }
