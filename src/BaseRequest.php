@@ -58,7 +58,7 @@ abstract class BaseRequest extends \ArrayObject
      */
     public function query()
     {
-        echo "\n YOUR QUERY \n" . $this->__toString() . "\n END QUERY \n";
+        // echo "\n YOUR QUERY \n" . $this->__toString() . "\n END QUERY \n";
 
         $request = Request::get($this->__toString())
             ->send();

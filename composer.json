@@ -8,7 +8,10 @@
         }
     ],
     "autoload": {
-        "classmap": ["./src"]
+        "psr-4": {
+            "NYTimes\\": "./src/",
+            "NYTimesTest\\": "./tests/"
+        }
     },
     "require" : {
         "eloquent/enumeration": "dev-master",

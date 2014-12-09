@@ -9,7 +9,9 @@ Use the Composer dependency manager to easily include these bindings into your p
 
 ```
 "require" : {
-    "amy/nytimes-apis": "dev-master"
+    "amy/nytimes-apis": "dev-master",
+    "eloquent/enumeration": "dev-master",
+    "nategood/httpful": "*"
 }
 ```
 

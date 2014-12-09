@@ -6,7 +6,7 @@ use NYTimes\ArticleSearch\ArticleSearchRequest;
 use NYTimes\ArticleSearch\Constants\ArticleSearchResponseFormat;
 use NYTimes\ArticleSearch\Constants\SortField;
 
-$query = new ArticleSearchQuery('test');
+$query = new ArticleSearchQuery('tests');
 
 $query
     ->page(1)
