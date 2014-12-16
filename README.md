@@ -19,6 +19,7 @@ Then run:
 
 ```
 composer install
+composer update
 ```
 
 ### NYTimes APIs Currently Supported
